@@ -241,6 +241,12 @@ input,select,textarea{font:inherit;padding:12px;border-radius:10px;border:1px so
 textarea{min-height:110px;resize:vertical}
 .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .note{font-size:.92rem;color:var(--leaf);font-weight:600}
+.fhint{font-size:.88rem;color:var(--muted)}
+.follow{margin-top:30px;display:grid;gap:12px;justify-items:center}
+.follow p{margin:0;font-size:1rem;opacity:.8}
+.flinks{display:flex;flex-wrap:wrap;gap:10px;justify-content:center}
+.flinks a{text-decoration:none;font-weight:600;padding:9px 18px;border-radius:999px;border:1px solid color-mix(in srgb,var(--hero-ink) 30%,transparent)}
+.flinks a:hover{border-color:var(--window);color:var(--window)}
 @media (max-width:900px){.contact{grid-template-columns:1fr}}
 @media (max-width:480px){.row2{grid-template-columns:1fr}}
 
@@ -538,8 +544,9 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
           <select id="f-topic"><option>Make a donation</option><option>Sponsor a child</option><option>Volunteer</option><option>Partner with Aminia</option><option>Refer a child</option><option>Something else</option></select>
         </label>
         <label for="f-msg">Message<textarea id="f-msg"></textarea></label>
-        <button class="btn give" type="submit">Send message</button>
+        <button class="btn give" type="submit">Send on WhatsApp</button>
         <p class="note" id="f-note" hidden></p>
+        <p class="fhint">This opens WhatsApp with your message ready to send to +254 791 025 078. Prefer email? Write to <strong>aminiake02@gmail.com</strong>.</p>
       </form>
     </div>
   </section>
@@ -549,11 +556,15 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
       <h2>No child with special needs should be left out.</h2>
       <p>Whether you're in Nairobi or New York, your support reaches a real child and family in rural Kenya.</p>
       <div class="cta"><a class="btn give" href="#give">Donate now</a><a class="btn line" href="#contact">Partner with us</a></div>
-      <form class="news" id="news" novalidate>
-        <input id="n-email" type="email" placeholder="Your email for updates" aria-label="Email for updates" autocomplete="email">
-        <button class="btn line" type="submit">Get updates</button>
-        <span class="msg" id="n-msg" hidden></span>
-      </form>
+      <div class="follow">
+        <p>Follow our home visits and updates</p>
+        <div class="flinks">
+          <a href="https://www.instagram.com/aminia_ke" target="_blank" rel="noopener">Instagram</a>
+          <a href="https://www.facebook.com/wecaremashambani" target="_blank" rel="noopener">Facebook</a>
+          <a href="https://t.me/aminia" target="_blank" rel="noopener">Telegram</a>
+          <a href="https://wa.me/254791025078" target="_blank" rel="noopener">WhatsApp</a>
+        </div>
+      </div>
     </div>
   </section>
 </main>
@@ -589,17 +600,15 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
   });
   document.getElementById('contact-form').addEventListener('submit', function(e){
     e.preventDefault();
+    var v = function(id){ return document.getElementById(id).value.trim(); };
     var note = document.getElementById('f-note');
-    note.textContent = (!document.getElementById('f-name').value.trim() || !document.getElementById('f-reach').value.trim())
-      ? 'Add your name and an email or phone number so we can reply.'
-      : 'Preview only: messages will be delivered once the site is live.';
+    if (!v('f-name') || !v('f-reach')) { note.textContent = 'Add your name and an email or phone number so we can reply.'; note.hidden = false; return; }
+    var text = 'Hello Aminia KE,\n\nName: ' + v('f-name') + (v('f-country') ? '\nCountry: ' + v('f-country') : '') + '\nContact: ' + v('f-reach') + '\nI\'d like to: ' + document.getElementById('f-topic').value + (v('f-msg') ? '\n\n' + v('f-msg') : '');
+    var url = 'https://wa.me/254791025078?text=' + encodeURIComponent(text);
+    var w = window.open(url, '_blank');
+    if (!w) { location.href = url; }
+    note.textContent = 'WhatsApp is opening with your message. Tap send to reach us.';
     note.hidden = false;
-  });
-  document.getElementById('news').addEventListener('submit', function(e){
-    e.preventDefault();
-    var m = document.getElementById('n-msg');
-    m.textContent = /.+@.+\..+/.test(document.getElementById('n-email').value) ? 'Preview only: sign-ups will work once the site is live.' : 'Enter a valid email address.';
-    m.hidden = false;
   });
 })();
 </script>
