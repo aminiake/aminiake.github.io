@@ -92,6 +92,15 @@ a{color:inherit}
 .givecard h2{font-size:1.6rem}
 .gintro{color:var(--muted)}
 .gopts{display:grid;gap:18px}
+.gbig{width:100%;font-size:1.05rem;padding:16px;text-align:center}
+.paybox{border:1px solid var(--line);border-radius:14px;padding:16px 18px;background:var(--bg)}
+.pbh{font-weight:700;margin-bottom:10px}
+.paybox dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:10px 16px;align-items:center}
+.paybox dt{color:var(--muted);font-size:.92rem}
+.paybox dd{margin:0;display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.paybox .num{font:800 1.25rem var(--display);font-variant-numeric:tabular-nums;letter-spacing:.02em}
+.copy{font:600 .8rem var(--body);border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:4px 12px;cursor:pointer}
+.copy:hover{border-color:var(--accent)}
 .gopts[hidden]{display:none}
 #g-open{width:100%;font-size:1.05rem;padding:16px}
 .seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:999px;padding:4px;border:1px solid var(--line)}
@@ -300,30 +309,24 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
       </div>
 
       <div class="hright">
-      <form class="givecard" id="give" aria-labelledby="give-h" novalidate>
+      <div class="givecard" id="give" role="region" aria-labelledby="give-h">
         <h2 id="give-h">Give a child a better tomorrow</h2>
         <p class="gintro">Your gift brings food, care and regular home visits to a child with special needs and their family.</p>
         <button class="btn give" type="button" id="g-open" aria-expanded="false" aria-controls="g-opts">Donate</button>
         <div class="gopts" id="g-opts" hidden>
-        <div class="seg" role="group" aria-label="Gift frequency">
-          <button type="button" id="freq-once" aria-pressed="false">One-time</button>
-          <button type="button" id="freq-month" aria-pressed="true">Monthly</button>
-        </div>
-        <div class="seg" role="group" aria-label="Currency">
-          <button type="button" id="cur-usd" aria-pressed="true">USD $</button>
-          <button type="button" id="cur-kes" aria-pressed="false">KES</button>
-        </div>
-        <div class="amts" id="amts" role="group" aria-label="Amount"></div>
-        <label class="custom" for="g-custom"><span id="cur-sym">$</span><input id="g-custom" inputmode="numeric" placeholder="Other amount" aria-label="Other amount"></label>
-        <p class="impact" id="impact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17s-7-4-7-9a3.8 3.8 0 0 1 7-2 3.8 3.8 0 0 1 7 2c0 5-7 9-7 9z"/></svg><span id="impact-t"></span></p>
-        <button class="btn give" type="submit" id="g-go">Donate</button>
-        <div class="payout" id="payout" aria-live="polite">
-          <strong id="payout-h">How to send your gift</strong>
-          <dl id="payout-dl"></dl>
-        </div>
+          <a class="btn give gbig" href="https://www.mchanga.africa/fundraiser/74174" target="_blank" rel="noopener">Give online: card, PayPal or M-Pesa</a>
+          <div class="paybox">
+            <p class="pbh">Or pay with M-Pesa</p>
+            <dl>
+              <dt>Paybill</dt><dd><span class="num">891300</span><button type="button" class="copy" data-copy="891300">Copy</button></dd>
+              <dt>Account</dt><dd><span class="num">74174</span><button type="button" class="copy" data-copy="74174">Copy</button></dd>
+              <dt>Or dial</dt><dd><span class="num">*483*57*74174#</span></dd>
+            </dl>
+          </div>
+          <p class="impact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17s-7-4-7-9a3.8 3.8 0 0 1 7-2 3.8 3.8 0 0 1 7 2c0 5-7 9-7 9z"/></svg><span>Donations go to our verified, treasurer-controlled fundraiser on M-Changa, Kenya's fundraising platform.</span></p>
         </div>
         <p class="secure">Every gift supports children with special needs and their families in Kenya.</p>
-      </form>
+      </div>
         <figure class="scene">
           <img src="images/team-home-visit.jpg" alt="The Aminia team with a family outside their home, delivering food and bedding" width="1600" height="1067">
           <figcaption>The Aminia team on a home visit, delivering food and bedding.</figcaption>
@@ -497,7 +500,8 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
         <h2 class="h2">Frequently asked questions</h2>
       </div>
       <div class="faq">
-        <details open><summary>Can I give from outside Kenya?</summary><p>Yes. Choose USD in the donation box at the top of this page for international options, or write to us and we'll help you give by bank transfer.</p></details>
+        <details open><summary>Can I give from outside Kenya?</summary><p>Yes. Click Donate, then “Give online” to pay by card or PayPal from anywhere in the world through our M-Changa fundraiser.</p></details>
+        <details><summary>How do I give by M-Pesa?</summary><p>Go to M-Pesa, choose Lipa na M-Pesa, then Pay Bill. Enter business number 891300 and account number 74174, then the amount. You can also dial *483*57*74174#.</p></details>
         <details><summary>Where does my money go?</summary><p>Gifts pay for basic needs, food baskets, home visits and help reaching therapy and school for the children and families we walk with. We will report how funds were used in our annual report.</p></details>
         <details><summary>Who do you support?</summary><p>Children aged 5–17 with special needs, such as cerebral palsy, autism and spinal conditions, and the parents and guardians who care for them, mostly in rural areas of Kenya.</p></details>
         <details><summary>Is Aminia a faith-based organisation?</summary><p>Our team is motivated by Christian faith, and we pray with families who welcome it. Support is given to every family we serve regardless of their beliefs.</p></details>
@@ -571,52 +575,18 @@ footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font
 
 <script>
 (function(){
-  var state = { freq:'month', cur:'USD', amt:25 };
-  var opts = { USD:[10,25,50,100], KES:[1000,2500,5000,10000] };
-  var sym = { USD:'$', KES:'KES ' };
-  var amtsEl = document.getElementById('amts');
-  var customEl = document.getElementById('g-custom');
-  function fmt(n){ return sym[state.cur] + Number(n).toLocaleString('en-US'); }
-  function press(a,b,on){ a.setAttribute('aria-pressed', on); b.setAttribute('aria-pressed', !on); }
-  function renderAmts(){
-    amtsEl.innerHTML = '';
-    opts[state.cur].forEach(function(v){
-      var b = document.createElement('button');
-      b.type = 'button'; b.textContent = fmt(v);
-      b.setAttribute('aria-pressed', String(v === state.amt && !customEl.value));
-      b.addEventListener('click', function(){ state.amt = v; customEl.value = ''; renderAmts(); renderImpact(); });
-      amtsEl.appendChild(b);
-    });
-    document.getElementById('cur-sym').textContent = state.cur === 'USD' ? '$' : 'KES';
-  }
-  function renderImpact(){
-    var a = customEl.value ? Number(customEl.value.replace(/[^0-9]/g,'')) : state.amt;
-    var when = state.freq === 'month' ? ' every month' : '';
-    document.getElementById('impact-t').textContent = a ? 'Your gift of ' + fmt(a) + when + ' helps a child with special needs get food, care and regular home visits.' : 'Choose an amount to see your gift.';
-    document.getElementById('g-go').textContent = a ? 'Donate ' + fmt(a) + (state.freq === 'month' ? ' monthly' : '') : 'Donate';
-  }
-  var fo = document.getElementById('freq-once'), fm = document.getElementById('freq-month');
-  fo.onclick = function(){ state.freq='once'; press(fo,fm,true); renderImpact(); };
-  fm.onclick = function(){ state.freq='month'; press(fm,fo,true); renderImpact(); };
-  var cu = document.getElementById('cur-usd'), ck = document.getElementById('cur-kes');
-  cu.onclick = function(){ state.cur='USD'; state.amt=25; press(cu,ck,true); customEl.value=''; renderAmts(); renderImpact(); document.getElementById('payout').classList.remove('on'); };
-  ck.onclick = function(){ state.cur='KES'; state.amt=2500; press(ck,cu,true); customEl.value=''; renderAmts(); renderImpact(); document.getElementById('payout').classList.remove('on'); };
-  customEl.addEventListener('input', function(){ renderAmts(); renderImpact(); });
-  document.getElementById('give').addEventListener('submit', function(e){
-    e.preventDefault();
-    var dl = document.getElementById('payout-dl');
-    dl.innerHTML = state.cur === 'KES'
-      ? '<dt>M-Pesa Paybill</dt><dd><span class="todo">add number</span></dd><dt>Account</dt><dd><span class="todo">add account name</span></dd><dt>Questions</dt><dd>WhatsApp +254 791 025 078</dd>'
-      : '<dt>Card / PayPal</dt><dd><span class="todo">add donation link</span></dd><dt>Bank transfer</dt><dd><span class="todo">add bank, SWIFT, account</span></dd>';
-    document.getElementById('payout').classList.add('on');
-  });
-  renderAmts(); renderImpact();
   var openBtn = document.getElementById('g-open'), opts2 = document.getElementById('g-opts');
   function openGive(){ opts2.hidden = false; openBtn.hidden = true; openBtn.setAttribute('aria-expanded','true'); }
-  openBtn.addEventListener('click', function(){ openGive(); var f = document.querySelector('#amts button[aria-pressed="true"]') || document.getElementById('freq-month'); if (f) f.focus(); });
+  openBtn.addEventListener('click', function(){ openGive(); document.querySelector('.gbig').focus(); });
   document.querySelectorAll('a[href="#give"]').forEach(function(a){ a.addEventListener('click', openGive); });
   if (location.hash === '#give') openGive();
-
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click', function(){
+      var t = btn.getAttribute('data-copy');
+      function done(){ btn.textContent = 'Copied'; setTimeout(function(){ btn.textContent = 'Copy'; }, 1500); }
+      if (navigator.clipboard) { navigator.clipboard.writeText(t).then(done, function(){}); }
+    });
+  });
   document.getElementById('contact-form').addEventListener('submit', function(e){
     e.preventDefault();
     var note = document.getElementById('f-note');
