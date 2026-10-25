@@ -1,0 +1,627 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aminia KE</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Aminia KE walks with children aged 5–17 with special needs and their families in rural Kenya, bringing support to their homes since 2017.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Figtree:wght@400;500;600;700&display=swap">
+<style>
+body{margin:0}img{max-width:100%}[hidden]{display:none!important}
+/* Layout: dusk hero with illustrated home + live giving card; then light/soft alternating bands; marigold = give, leaf = trust */
+:root{
+  --bg:#F6F8F9; --surface:#FFFFFF; --ink:#11283D; --muted:#4F6476; --line:#DAE3E9;
+  --accent:#E8992A; --accent-strong:#C97A0E; --accent-ink:#241603; --leaf:#2C7353; --soft:#EAF2EE; --sun:#FFF4E2;
+  --hero:#0F2438; --hero-2:#1D4061; --hero-ink:#F2F6F9; --window:#FFC861;
+  --display:"Bricolage Grotesque", "Segoe UI", system-ui, sans-serif;
+  --body:"Figtree", "Segoe UI", system-ui, -apple-system, sans-serif;
+  --s1:1.2rem; --s2:1.5rem; --s3:clamp(1.9rem,4vw,2.7rem); --s4:clamp(2.6rem,6.4vw,4.6rem);
+  --shadow:0 18px 50px -20px rgba(8,22,36,.45);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0C1824; --surface:#132536; --ink:#E7EEF3; --muted:#A1B3C2; --line:#24405A;
+  --accent:#F2A93E; --accent-strong:#F7BD62; --accent-ink:#241603; --leaf:#62BC92; --soft:#12302A; --sun:#2A2214;
+  --hero:#08131E; --hero-2:#143352; --hero-ink:#F2F6F9; --window:#FFC861; --shadow:0 18px 50px -20px rgba(0,0,0,.7); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0C1824; --surface:#132536; --ink:#E7EEF3; --muted:#A1B3C2; --line:#24405A;
+  --accent:#F2A93E; --accent-strong:#F7BD62; --accent-ink:#241603; --leaf:#62BC92; --soft:#12302A; --sun:#2A2214;
+  --hero:#08131E; --hero-2:#143352; --hero-ink:#F2F6F9; --window:#FFC861; --shadow:0 18px 50px -20px rgba(0,0,0,.7); color-scheme:dark}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:var(--body);font-size:1.02rem;line-height:1.65}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--hero)}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0;letter-spacing:-.015em}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--accent);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1180px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.band{padding-block:clamp(64px,9vw,112px)}
+.eyebrow{font-size:.78rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--leaf)}
+.h2{font-size:var(--s3);margin-top:10px}
+.lede{color:var(--muted);max-width:62ch;font-size:var(--s1);line-height:1.55;margin-top:16px}
+.center{text-align:center}.center .lede{margin-inline:auto}
+.todo{background:color-mix(in srgb,var(--accent) 26%,transparent);border-radius:4px;padding:0 .35em;font-weight:600}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:14px 24px;border-radius:999px;font:700 1rem var(--body);text-decoration:none;border:2px solid transparent;cursor:pointer;transition:transform .15s,background .15s;color:inherit}
+.btn:hover{transform:translateY(-1px)}
+.btn.give{background:var(--accent);color:var(--accent-ink)}
+.btn.give:hover{background:var(--accent-strong)}
+.btn.line{border-color:currentColor;background:transparent}
+.btn svg{width:18px;height:18px}
+
+/* top bar + nav */
+.topbar{background:var(--hero);color:var(--hero-ink);font-size:.85rem}
+.topbar .wrap{display:flex;justify-content:space-between;gap:12px;padding-block:8px;opacity:.75;flex-wrap:wrap}
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--hero) 94%,transparent);backdrop-filter:blur(10px);color:var(--hero-ink);border-bottom:1px solid color-mix(in srgb,var(--hero-ink) 10%,transparent)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:12px}
+.logo{display:flex;align-items:center;gap:10px;font:800 1.35rem var(--display);text-decoration:none}
+.logo svg{width:34px;height:34px}
+.nav ul{display:flex;gap:24px;list-style:none;margin:0;padding:0}
+.nav ul a{text-decoration:none;opacity:.8;font-weight:500}
+.nav ul a:hover{opacity:1}
+.nav .btn{padding:10px 20px}
+@media (max-width:900px){.nav ul{display:none}}
+
+/* hero */
+.hero{background:radial-gradient(120% 90% at 75% 100%,var(--hero-2) 0%,var(--hero) 62%);color:var(--hero-ink);overflow:hidden;position:relative}
+.hero .wrap{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr);gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(48px,7vw,88px)}
+.hero h1{font-size:var(--s4);font-weight:800}
+.hero h1 em{font-style:normal;color:var(--window)}
+.hero p.sub{font-size:var(--s1);opacity:.86;max-width:50ch;margin-top:20px}
+.trust{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.trust span{display:inline-flex;align-items:center;gap:7px;font-size:.86rem;padding:6px 12px;border-radius:999px;background:color-mix(in srgb,var(--hero-ink) 8%,transparent);border:1px solid color-mix(in srgb,var(--hero-ink) 14%,transparent)}
+.trust svg{width:15px;height:15px;color:var(--window)}
+.scene{margin-top:36px;max-width:520px}
+.scene svg{display:block;width:100%;height:auto}
+
+/* giving card */
+.givecard{background:var(--surface);color:var(--ink);border-radius:22px;padding:28px;box-shadow:var(--shadow);display:grid;gap:18px}
+.givecard h2{font-size:1.6rem}
+.seg{display:grid;grid-template-columns:1fr 1fr;background:var(--bg);border-radius:999px;padding:4px;border:1px solid var(--line)}
+.seg button{font:600 .95rem var(--body);border:0;background:transparent;color:var(--muted);padding:10px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--bg)}
+.amts{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.amts button{font:700 1.15rem var(--display);font-variant-numeric:tabular-nums;padding:14px 10px;border-radius:14px;border:2px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer}
+.amts button[aria-pressed="true"]{border-color:var(--accent);background:var(--sun)}
+.custom{display:flex;align-items:center;gap:8px;border:2px solid var(--line);border-radius:14px;padding:4px 14px}
+.custom span{font-weight:700;color:var(--muted)}
+.custom input{border:0;outline:0;background:transparent;font:700 1.1rem var(--display);color:var(--ink);width:100%;padding:10px 0}
+.custom:focus-within{border-color:var(--accent)}
+.impact{font-size:.95rem;color:var(--muted);background:var(--soft);border-radius:12px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start}
+.impact svg{flex:none;width:20px;height:20px;color:var(--leaf);margin-top:2px}
+.givecard .btn{width:100%;font-size:1.05rem;padding:16px}
+.secure{font-size:.82rem;color:var(--muted);text-align:center}
+.payout{display:none;gap:10px;border-top:1px dashed var(--line);padding-top:16px;font-size:.95rem}
+.payout.on{display:grid}
+.payout dl{margin:0;display:grid;grid-template-columns:auto 1fr;gap:6px 14px}
+.payout dt{font-weight:600}.payout dd{margin:0;color:var(--muted)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}.scene{display:none}}
+
+/* pledge row */
+.pledges{background:var(--surface);border-bottom:1px solid var(--line)}
+.pledges .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr))}
+.pledges div{padding:26px 20px;border-right:1px solid var(--line);display:grid;gap:4px}
+.pledges div:last-child{border-right:0}
+.pledges strong{font:800 1.9rem var(--display);color:var(--ink)}
+.pledges span{color:var(--muted);font-size:.92rem;line-height:1.4}
+@media (max-width:760px){.pledges .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}.pledges div:nth-child(2){border-right:0}.pledges div:nth-child(-n+2){border-bottom:1px solid var(--line)}}
+
+/* why */
+.why{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(28px,6vw,80px);align-items:center}
+.compare{display:grid;gap:14px}
+.cmp{border-radius:16px;padding:22px 24px;border:1px solid var(--line);background:var(--surface)}
+.cmp.us{border:2px solid var(--leaf);background:var(--soft)}
+.cmp small{font-weight:700;letter-spacing:.12em;text-transform:uppercase;font-size:.72rem;color:var(--muted)}
+.cmp.us small{color:var(--leaf)}
+.cmp h3{font-size:1.25rem;margin:6px 0}
+.cmp p{color:var(--muted)}
+@media (max-width:900px){.why{grid-template-columns:1fr}}
+
+/* programmes */
+.progs{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.prog{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.prog .art{aspect-ratio:16/9;max-width:100%;display:grid;place-items:center}
+.prog .art svg{width:100%;height:100%}
+.prog .txt{padding:24px 26px 28px;display:grid;gap:10px}
+.prog h3{font-size:var(--s2)}
+.prog p{color:var(--muted)}
+.prog ul{margin:0;padding:0;list-style:none;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.prog li{display:flex;gap:8px}
+.prog li::before{content:"";flex:none;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-top:9px}
+@media (max-width:900px){.progs{grid-template-columns:1fr}}
+
+/* reach */
+.reach{list-style:none;margin:24px 0 0;padding:0;display:grid;gap:12px}
+.reach li span{display:block;font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.reach a{color:var(--leaf);font-weight:600}
+
+/* stories */
+.stories{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.story{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column}
+.story .pic{aspect-ratio:4/3;max-width:100%;display:grid;place-items:center;position:relative;color:#FFFFFF}
+.story .pic span{font:800 5rem var(--display);opacity:.9}
+.story .pic em{position:absolute;bottom:12px;right:12px;font-style:normal;font-size:.75rem;background:rgba(255,255,255,.88);color:#11283D;padding:4px 10px;border-radius:999px}
+.stxt{padding:22px 24px 26px;display:grid;gap:8px}
+.stxt h3{font-size:var(--s2)}
+.stxt p{color:var(--muted)}
+.stxt .tag{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--leaf)}
+@media (max-width:900px){.stories{grid-template-columns:1fr}}
+
+/* shop */
+.shop{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,72px);align-items:center}
+.tee{background:var(--sun);border-radius:28px;padding:24px;max-width:420px;width:100%;justify-self:center}
+.tee svg{display:block;width:100%;height:auto}
+.price{font:800 2.2rem var(--display);margin-top:20px;font-variant-numeric:tabular-nums}
+.price small{font:600 1rem var(--body);color:var(--muted)}
+@media (max-width:820px){.shop{grid-template-columns:1fr}.tee{max-width:280px}}
+
+/* journey */
+.journey{background:var(--surface);border-block:1px solid var(--line)}
+.steps{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px;counter-reset:s}
+.steps li{counter-increment:s;position:relative;padding-top:64px}
+.steps li::before{content:counter(s);position:absolute;top:0;left:0;width:48px;height:48px;border-radius:50%;background:var(--accent);color:var(--accent-ink);display:grid;place-items:center;font:800 1.2rem var(--display)}
+.steps li::after{content:"";position:absolute;top:24px;left:58px;right:-22px;border-top:2px dashed var(--line)}
+.steps li:last-child::after{display:none}
+.steps h3{font-size:var(--s1);margin-bottom:6px}
+.steps p{color:var(--muted);font-size:.96rem}
+@media (max-width:900px){.steps{grid-template-columns:repeat(2,minmax(0,1fr))}.steps li::after{display:none}}
+@media (max-width:520px){.steps{grid-template-columns:1fr}}
+
+/* founder */
+.founder .wrap{display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:clamp(28px,6vw,72px);align-items:center}
+.portrait{aspect-ratio:4/5;max-width:100%;border-radius:24px;background:linear-gradient(160deg,var(--accent) 0%,var(--accent-strong) 100%);display:grid;place-items:center;color:var(--accent-ink);position:relative;overflow:hidden}
+.portrait span{font:800 7rem var(--display);opacity:.9}
+.portrait em{position:absolute;bottom:14px;left:14px;right:14px;font-style:normal;font-size:.8rem;background:color-mix(in srgb,var(--surface) 85%,transparent);color:var(--ink);padding:6px 10px;border-radius:8px;text-align:center}
+.letter blockquote{margin:18px 0 0;font:600 clamp(1.35rem,2.6vw,1.8rem)/1.35 var(--display)}
+.letter p.more{color:var(--muted);margin-top:16px;font-size:var(--s1);line-height:1.55}
+.sig{margin-top:22px}
+.sig strong{display:block;font-size:1.05rem}.sig span{color:var(--muted)}
+@media (max-width:900px){.founder .wrap{grid-template-columns:1fr}.portrait{max-width:280px}}
+
+/* accountability */
+.trustgrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;margin-top:44px}
+.tcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;display:grid;gap:10px;align-content:start}
+.tcard .ic{width:48px;height:48px;border-radius:14px;background:var(--soft);color:var(--leaf);display:grid;place-items:center}
+.tcard .ic svg{width:26px;height:26px}
+.tcard h3{font-size:var(--s1)}
+.tcard p,.tcard li{color:var(--muted)}
+.tcard ul{margin:0;padding-left:18px}
+.statusline{display:flex;align-items:center;gap:10px;margin-top:28px;padding:14px 18px;border-radius:14px;background:var(--sun);border:1px solid color-mix(in srgb,var(--accent) 35%,transparent);font-size:.96rem}
+.statusline i{flex:none;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 4px color-mix(in srgb,var(--accent) 25%,transparent)}
+@media (max-width:900px){.trustgrid{grid-template-columns:1fr}}
+
+/* faq */
+.faq{max-width:820px;margin:40px auto 0;display:grid;gap:12px}
+details{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:18px 22px}
+summary{cursor:pointer;font:700 1.1rem var(--display);list-style:none;display:flex;justify-content:space-between;gap:16px}
+summary::-webkit-details-marker{display:none}
+summary::after{content:"+";font-size:1.4rem;line-height:1;color:var(--accent-strong)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px}
+
+/* involve + contact */
+.soft{background:var(--soft)}
+.contact{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px)}
+.ways{display:grid;gap:18px;margin-top:28px}
+.way{display:grid;grid-template-columns:48px minmax(0,1fr);gap:14px}
+.way .ic{width:48px;height:48px;border-radius:14px;background:var(--surface);color:var(--leaf);display:grid;place-items:center}
+.way svg{width:24px;height:24px}
+.way h3{font-size:1.12rem}
+.way p{color:var(--muted);font-size:.96rem}
+form{display:grid;gap:14px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:28px;align-self:start;box-shadow:var(--shadow)}
+form h3{font-size:var(--s2)}
+label{font-weight:600;font-size:.92rem;display:grid;gap:6px}
+input,select,textarea{font:inherit;padding:12px;border-radius:10px;border:1px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+textarea{min-height:110px;resize:vertical}
+.row2{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.note{font-size:.92rem;color:var(--leaf);font-weight:600}
+@media (max-width:900px){.contact{grid-template-columns:1fr}}
+@media (max-width:480px){.row2{grid-template-columns:1fr}}
+
+/* closing + footer */
+.closing{background:radial-gradient(90% 120% at 50% 0%,var(--hero-2) 0%,var(--hero) 70%);color:var(--hero-ink);text-align:center}
+.closing h2{font-size:var(--s3)}
+.closing p{opacity:.85;margin:16px auto 0;max-width:56ch;font-size:var(--s1)}
+.closing .cta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:30px}
+.news{display:flex;gap:10px;max-width:480px;margin:28px auto 0;flex-wrap:wrap}
+.news input{flex:1 1 220px;background:color-mix(in srgb,var(--hero-ink) 10%,transparent);border-color:color-mix(in srgb,var(--hero-ink) 20%,transparent);color:var(--hero-ink)}
+.news input::placeholder{color:color-mix(in srgb,var(--hero-ink) 60%,transparent)}
+.news .msg{flex-basis:100%;font-size:.9rem;color:var(--window)}
+footer{background:var(--hero);color:var(--hero-ink);padding-block:48px 28px;font-size:.94rem}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px}
+.fgrid h4{font:700 .78rem var(--body);letter-spacing:.14em;text-transform:uppercase;opacity:.6;margin:0 0 12px}
+.fgrid ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.fgrid a{text-decoration:none;opacity:.85}.fgrid a:hover{opacity:1}
+.fgrid p{opacity:.75;margin-top:12px;max-width:32ch}
+.fbase{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:36px;padding-top:20px;border-top:1px solid color-mix(in srgb,var(--hero-ink) 15%,transparent);opacity:.65;font-size:.88rem}
+@media (max-width:820px){.fgrid{grid-template-columns:1fr 1fr}}
+@media (max-width:480px){.fgrid{grid-template-columns:1fr}}
+
+@media (prefers-reduced-motion:no-preference){
+  .glow{animation:glow 4s ease-in-out infinite alternate}
+  @keyframes glow{from{opacity:.12}to{opacity:.28}}
+  .star{animation:tw 3s ease-in-out infinite alternate}
+  .star:nth-child(2n){animation-delay:1.3s}
+  @keyframes tw{from{opacity:.25}to{opacity:1}}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap"><span>Home-based support for children in Kenya</span><span>Registration under the PBO Act 2013 in progress</span></div></div>
+<header class="nav">
+  <div class="wrap">
+    <a class="logo" href="#top" aria-label="Aminia KE home">
+      <svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 20 20 6l16 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="24" r="5" fill="var(--window)"/><path d="M11 36v-9M29 36v-9M11 36h18" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>
+      Aminia KE
+    </a>
+    <ul>
+      <li><a href="#why">Our approach</a></li>
+      <li><a href="#programmes">Programmes</a></li>
+      <li><a href="#stories">Stories</a></li>
+      <li><a href="#shop">Shop</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a class="btn give" href="#give">Donate</a>
+  </div>
+</header>
+
+<main id="top">
+  <section class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Every child with special needs deserves to be <em>seen, loved and supported</em>.</h1>
+        <p class="sub">Aminia KE walks with children aged 5–17 with special needs in rural Kenya, and with the families who care for them. We bring support to their doorstep, so no child is left out.</p>
+        <div class="trust">
+          <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Walking with families since 2017</span>
+          <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Safeguarding policy</span>
+          <span><svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8.5 6.5 12 13 4.5"/></svg>Board-governed</span>
+        </div>
+        <div class="scene" aria-hidden="true">
+          <svg viewBox="0 0 560 300">
+            <g fill="var(--hero-ink)"><circle class="star" cx="40" cy="30" r="2"/><circle class="star" cx="130" cy="70" r="1.5"/><circle class="star" cx="500" cy="24" r="2"/><circle class="star" cx="540" cy="90" r="1.5"/><circle class="star" cx="270" cy="20" r="1.4"/></g>
+            <circle cx="470" cy="70" r="28" fill="var(--window)" opacity=".9"/><circle cx="481" cy="62" r="25" fill="#122C45"/>
+            <path d="M70 300 V200" stroke="#081522" stroke-width="9"/><path d="M70 226 L44 200 M70 216 L100 192" stroke="#081522" stroke-width="5" stroke-linecap="round"/>
+            <ellipse cx="72" cy="186" rx="70" ry="19" fill="#081522"/>
+            <path d="M0 282 Q280 252 560 280 V300 H0Z" fill="#081522"/>
+            <ellipse class="glow" cx="300" cy="215" rx="190" ry="95" fill="var(--window)" opacity=".2"/>
+            <path d="M180 170 L300 92 L420 170 Z" fill="#E8992A"/>
+            <path d="M172 174 L300 90 L428 174" fill="none" stroke="#C97A0E" stroke-width="10" stroke-linejoin="round" stroke-linecap="round"/>
+            <rect x="198" y="170" width="204" height="112" fill="#F2E6D3"/>
+            <rect x="226" y="208" width="44" height="74" rx="4" fill="#2C7353"/>
+            <circle cx="248" cy="226" r="8" fill="#F2E6D3"/><path d="M236 264 Q238 238 248 236 Q258 238 260 264 Z" fill="#F2E6D3"/>
+            <rect x="296" y="196" width="82" height="62" rx="4" fill="var(--window)"/>
+            <circle cx="326" cy="220" r="9" fill="#11283D"/><path d="M312 258 Q314 234 326 232 Q338 234 340 258 Z" fill="#11283D"/>
+            <path d="M318 240 L344 236 L344 249 L318 253 Z" fill="#FFF"/>
+            <path d="M337 196 V258 M296 226 H378" stroke="#C97A0E" stroke-width="4"/>
+          </svg>
+        </div>
+      </div>
+
+      <form class="givecard" id="give" aria-labelledby="give-h" novalidate>
+        <h2 id="give-h">Give a child a better tomorrow</h2>
+        <div class="seg" role="group" aria-label="Gift frequency">
+          <button type="button" id="freq-once" aria-pressed="false">One-time</button>
+          <button type="button" id="freq-month" aria-pressed="true">Monthly</button>
+        </div>
+        <div class="seg" role="group" aria-label="Currency">
+          <button type="button" id="cur-usd" aria-pressed="true">USD $</button>
+          <button type="button" id="cur-kes" aria-pressed="false">KES</button>
+        </div>
+        <div class="amts" id="amts" role="group" aria-label="Amount"></div>
+        <label class="custom" for="g-custom"><span id="cur-sym">$</span><input id="g-custom" inputmode="numeric" placeholder="Other amount" aria-label="Other amount"></label>
+        <p class="impact" id="impact"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 17s-7-4-7-9a3.8 3.8 0 0 1 7-2 3.8 3.8 0 0 1 7 2c0 5-7 9-7 9z"/></svg><span id="impact-t"></span></p>
+        <button class="btn give" type="submit" id="g-go">Donate</button>
+        <div class="payout" id="payout" aria-live="polite">
+          <strong id="payout-h">How to send your gift</strong>
+          <dl id="payout-dl"></dl>
+        </div>
+        <p class="secure">Every gift supports children with special needs and their families in Kenya.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="pledges" aria-label="Our commitments">
+    <div class="wrap">
+      <div><strong>Since 2017</strong><span>Walking alongside families, year after year</span></div>
+      <div><strong>5–17</strong><span>Children with special needs we support</span></div>
+      <div><strong>Rural Kenya</strong><span>Reaching homes far from therapy and services</span></div>
+      <div><strong>At home</strong><span>Support delivered to the family's doorstep</span></div>
+    </div>
+  </section>
+
+  <section id="why" class="band">
+    <div class="wrap why">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2 class="h2">A link between children with special needs and the wider community</h2>
+        <p class="lede">In rural Kenya, a child with a disability can easily go unseen. Therapy is far away and costly, and caring for the child often falls on one parent alone.</p>
+        <p class="lede">Our mission is a community where children with special needs are accepted, and where neighbours, churches and friends help identify and meet their needs.</p>
+      </div>
+      <div class="compare">
+        <div class="cmp"><small>Too often</small><h3>Hidden and left out</h3><p>Children with special needs stay out of sight, and their families carry the load with little help.</p></div>
+        <div class="cmp us"><small>The Aminia way</small><h3>Seen, visited and supported</h3><p>We visit families at home, build lasting relationships, meet real needs and connect them to a caring community.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="programmes" class="band" style="padding-top:0">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">What we do</p>
+        <h2 class="h2">How we walk with families</h2>
+      </div>
+      <div class="progs">
+        <article class="prog">
+          <div class="art" style="background:color-mix(in srgb,var(--hero-2) 14%,var(--surface))"><svg viewBox="0 0 320 180" aria-hidden="true"><ellipse cx="160" cy="152" rx="120" ry="12" fill="var(--hero-2)" opacity=".2"/><path d="M60 100 L110 62 L160 100 Z" fill="#E8992A"/><rect x="72" y="100" width="76" height="52" fill="#F2E6D3"/><rect x="100" y="118" width="20" height="34" fill="#2C7353"/><circle cx="210" cy="84" r="14" fill="#11283D"/><path d="M188 152q2-50 22-52 20 2 22 52z" fill="#11283D"/><circle cx="252" cy="96" r="11" fill="var(--accent-strong)"/><path d="M236 152q2-38 16-40 14 2 16 40z" fill="var(--accent-strong)"/></svg></div>
+          <div class="txt"><h3>Home visits</h3><p>Scheduled visits to every family we support.</p>
+          <ul><li>Build lasting relationships with each family</li><li>Understand and meet the household's needs</li><li>Pray with families and share the hope of the gospel</li></ul></div>
+        </article>
+        <article class="prog">
+          <div class="art" style="background:var(--sun)"><svg viewBox="0 0 320 180" aria-hidden="true"><ellipse cx="160" cy="150" rx="110" ry="12" fill="var(--accent)" opacity=".25"/><path d="M95 95h130l-12 55H107z" fill="var(--accent)"/><path d="M95 95h130" stroke="var(--accent-strong)" stroke-width="6" stroke-linecap="round"/><path d="M118 95 Q160 40 202 95" fill="none" stroke="var(--accent-strong)" stroke-width="6"/><circle cx="135" cy="88" r="14" fill="#2C7353"/><circle cx="162" cy="82" r="16" fill="#E15C3A"/><circle cx="190" cy="90" r="13" fill="#F5C343"/></svg></div>
+          <div class="txt"><h3>Jazakikapu</h3><p>Food baskets for families at Christmas.</p>
+          <ul><li>Give a single item or a full basket</li><li>Baskets go straight to the families we visit</li><li>A practical way for anyone to help</li></ul></div>
+        </article>
+        <article class="prog">
+          <div class="art" style="background:var(--soft)"><svg viewBox="0 0 320 180" aria-hidden="true"><ellipse cx="160" cy="152" rx="120" ry="12" fill="var(--leaf)" opacity=".2"/><rect x="70" y="110" width="180" height="12" rx="6" fill="#8A5A2B"/><path d="M90 122v30M230 122v30" stroke="#8A5A2B" stroke-width="8"/><circle cx="130" cy="100" r="11" fill="#E15C3A"/><circle cx="160" cy="98" r="12" fill="#F5C343"/><circle cx="190" cy="100" r="11" fill="#2C7353"/><rect x="215" y="72" width="30" height="30" rx="3" fill="var(--accent)"/><path d="M230 72v30M215 87h30" stroke="#C0392B" stroke-width="4"/><path d="M160 40l5 11 12 1-9 8 3 12-11-6-11 6 3-12-9-8 12-1z" fill="var(--accent)"/></svg></div>
+          <div class="txt"><h3>Christmas Basket</h3><p>A joyful day of togetherness.</p>
+          <ul><li>Families gather at one host family's home</li><li>A shared Christmas meal and gifts</li><li>Children and parents meet others who understand</li></ul></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="stories" class="band soft">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">Children we walk with</p>
+        <h2 class="h2">Every child has a name and a story</h2>
+        <p class="lede">Names and stories are shared with the permission of each child's family.</p>
+      </div>
+      <div class="stories">
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(150deg,var(--accent),var(--accent-strong))"><span>F</span><em>Add photo</em></div>
+          <div class="stxt">
+            <p class="tag">With us since 2017</p>
+            <h3>Fiona</h3>
+            <p>Fiona lives with kyphosis, a curve of the spine that limits heavy physical work. Raised by a single parent in Gatundu North, she has finished high school and is working toward college.</p>
+          </div>
+        </article>
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(150deg,#3E8F6B,var(--leaf))"><span>B</span><em>Add photo</em></div>
+          <div class="stxt">
+            <p class="tag">Needs therapy</p>
+            <h3>Blessing</h3>
+            <p>Blessing has cerebral palsy and needs help to move. Her mother cares for her full time. Distance and cost have kept her from starting therapy, and that is where your support can change things.</p>
+          </div>
+        </article>
+        <article class="story">
+          <div class="pic" style="background:linear-gradient(150deg,#2E5B86,var(--hero-2))"><span>E</span><em>Add photo</em></div>
+          <div class="stxt">
+            <p class="tag">Age 10</p>
+            <h3>Edwin</h3>
+            <p>Edwin is autistic and finds communication and friendships hard. He needs a parent or guardian with him constantly, which leaves little room to earn. His family most needs help with basic needs.</p>
+          </div>
+        </article>
+      </div>
+      <div class="center" style="margin-top:36px"><a class="btn give" href="#give">Support a child like Blessing</a></div>
+    </div>
+  </section>
+
+  <section id="shop" class="band">
+    <div class="wrap shop">
+      <div class="tee" aria-hidden="true">
+        <svg viewBox="0 0 300 300"><path d="M95 50 L60 70 L30 120 L70 140 L85 115 L85 260 L215 260 L215 115 L230 140 L270 120 L240 70 L205 50 Q150 80 95 50 Z" fill="var(--hero-2)"/><path d="M120 54 Q150 72 180 54" fill="none" stroke="var(--hero)" stroke-width="6"/><path d="M125 150 L150 128 L175 150" fill="none" stroke="var(--window)" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/><circle cx="150" cy="160" r="9" fill="var(--window)"/><text x="150" y="200" text-anchor="middle" font-family="Bricolage Grotesque, sans-serif" font-weight="800" font-size="20" fill="#F2F6F9">AMINIA KE</text></svg>
+      </div>
+      <div>
+        <p class="eyebrow">Support na Vazi</p>
+        <h2 class="h2">Wear it, and support a family</h2>
+        <p class="lede">Our Aminia T-shirts help fund the families we support. Every shirt you buy puts money straight into their care.</p>
+        <p class="price">KES 1,000 <small>per T-shirt</small></p>
+        <p class="lede" style="font-size:1rem;margin-top:8px">Order on WhatsApp: <strong>+254 791 025 078</strong></p>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:22px">
+          <a class="btn give" href="https://wa.me/254791025078?text=Hi%20Aminia%2C%20I%27d%20like%20to%20order%20a%20Support%20na%20Vazi%20T-shirt" target="_blank" rel="noopener">Order on WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="band journey">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">How it works</p>
+        <h2 class="h2">From first call to lasting support</h2>
+      </div>
+      <ol class="steps">
+        <li><h3>Referral</h3><p>A family, school, church or community health volunteer tells us about a child who needs help.</p></li>
+        <li><h3>Home visit</h3><p>We meet the child with their parent or guardian present and learn what the household needs.</p></li>
+        <li><h3>Support plan</h3><p>Together we agree what support the child receives and who does what.</p></li>
+        <li><h3>Follow-up</h3><p>We visit regularly, track progress and adjust the plan as the child grows.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="band founder">
+    <div class="wrap">
+      <div class="portrait" aria-hidden="true"><span>B</span><em>Add founder photo</em></div>
+      <div class="letter">
+        <p class="eyebrow">A word from our founder</p>
+        <blockquote>“A child with special needs should never be hidden away. Aminia exists so these children are seen, loved and supported by the community around them.”</blockquote>
+        <p class="more">Every gift goes toward a real child, in a real home, with a family that wants the best for them. Thank you for standing with us.</p>
+        <div class="sig"><strong>Bernard</strong><span>Founder, Aminia KE</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="trust" class="band soft">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">Accountability</p>
+        <h2 class="h2">Built to be trusted with your gift</h2>
+      </div>
+      <div class="trustgrid">
+        <div class="tcard">
+          <div class="ic"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"><path d="M13 3 4 6.5v6c0 5.5 4 9 9 10.5 5-1.5 9-5 9-10.5v-6z"/><path d="m9 13 3 3 5-6" stroke-linecap="round"/></svg></div>
+          <h3>Safeguarding first</h3>
+          <p>Our child protection framework follows Kenyan law:</p>
+          <ul><li>Children Act 2022</li><li>Persons with Disabilities Act 2025</li><li>Data Protection Act 2019</li></ul>
+        </div>
+        <div class="tcard">
+          <div class="ic"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="13" cy="8" r="3.5"/><circle cx="5.5" cy="11" r="2.5"/><circle cx="20.5" cy="11" r="2.5"/><path d="M7 22a6 6 0 0 1 12 0M1.5 20a4 4 0 0 1 6-3.4M24.5 20a4 4 0 0 0-6-3.4"/></svg></div>
+          <h3>Independent board</h3>
+          <p>A board of five to nine members oversees our work, led by a Director, Deputy Director, Secretary and Treasurer.</p>
+        </div>
+        <div class="tcard">
+          <div class="ic"><svg viewBox="0 0 26 26" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h10l4 4v16H6z"/><path d="M16 3v4h4M10 13h6M10 17h6"/></svg></div>
+          <h3>Open with donors</h3>
+          <p>We will publish annual reports and financial statements. Any donor can ask how their gift was used.</p>
+        </div>
+      </div>
+      <p class="statusline"><i aria-hidden="true"></i>Aminia KE is completing registration with Kenya's Public Benefit Organisations Regulatory Authority under the PBO Act 2013.</p>
+    </div>
+  </section>
+
+  <section id="faq" class="band">
+    <div class="wrap">
+      <div class="center">
+        <p class="eyebrow">Questions donors ask</p>
+        <h2 class="h2">Frequently asked questions</h2>
+      </div>
+      <div class="faq">
+        <details open><summary>Can I give from outside Kenya?</summary><p>Yes. Choose USD in the donation box at the top of this page for international options, or write to us and we'll help you give by bank transfer.</p></details>
+        <details><summary>Where does my money go?</summary><p>Gifts pay for basic needs, food baskets, home visits and help reaching therapy and school for the children and families we walk with. We will report how funds were used in our annual report.</p></details>
+        <details><summary>Who do you support?</summary><p>Children aged 5–17 with special needs, such as cerebral palsy, autism and spinal conditions, and the parents and guardians who care for them, mostly in rural areas of Kenya.</p></details>
+        <details><summary>Is Aminia a faith-based organisation?</summary><p>Our team is motivated by Christian faith, and we pray with families who welcome it. Support is given to every family we serve regardless of their beliefs.</p></details>
+        <details><summary>Can I give food or items instead of money?</summary><p>Yes. Through Jazakikapu you can give single food items or a full basket at Christmas. Message us on WhatsApp to arrange it.</p></details>
+        <details><summary>How do you protect the children you serve?</summary><p>Everyone who works with children goes through safeguarding checks, home visits follow set procedures, and personal information is handled under Kenya's Data Protection Act 2019.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="band soft">
+    <div class="wrap contact">
+      <div>
+        <p class="eyebrow">Get involved</p>
+        <h2 class="h2">More ways to help</h2>
+        <ul class="reach">
+          <li><span>WhatsApp</span><a href="https://wa.me/254791025078" target="_blank" rel="noopener">+254 791 025 078</a></li>
+          <li><span>Email</span>aminiake02@gmail.com</li>
+          <li><span>Follow us</span><a href="https://www.instagram.com/aminia_ke" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/wecaremashambani" target="_blank" rel="noopener">Facebook</a> · <a href="https://t.me/aminia" target="_blank" rel="noopener">Telegram</a></li>
+        </ul>
+        <div class="ways">
+          <div class="way"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-8-4.7-8-10a4.4 4.4 0 0 1 8-2.4A4.4 4.4 0 0 1 20 10c0 5.3-8 10-8 10z"/></svg></div><div><h3>Volunteer</h3><p>Join our home visits, Christmas Basket day and other activities. All volunteers complete safeguarding checks.</p></div></div>
+          <div class="way"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12h5l3-3 4 4-2 2M21 12h-4M8 12l5 5 2-2"/></svg></div><div><h3>Become a monthly supporter</h3><p>Give money or basic needs every month, or sponsor a family fully or in part.</p></div></div>
+          <div class="way"><div class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5 12 3l9 7.5M5 9v11h14V9"/></svg></div><div><h3>Refer a child</h3><p>Know a family who needs support? Tell us and we'll arrange a visit.</p></div></div>
+        </div>
+      </div>
+      <form id="contact-form" novalidate>
+        <h3>Send us a message</h3>
+        <div class="row2">
+          <label for="f-name">Name<input id="f-name" autocomplete="name"></label>
+          <label for="f-country">Country<input id="f-country" autocomplete="country-name"></label>
+        </div>
+        <label for="f-reach">Email or phone<input id="f-reach" autocomplete="email"></label>
+        <label for="f-topic">I'd like to
+          <select id="f-topic"><option>Make a donation</option><option>Sponsor a child</option><option>Volunteer</option><option>Partner with Aminia</option><option>Refer a child</option><option>Something else</option></select>
+        </label>
+        <label for="f-msg">Message<textarea id="f-msg"></textarea></label>
+        <button class="btn give" type="submit">Send message</button>
+        <p class="note" id="f-note" hidden></p>
+      </form>
+    </div>
+  </section>
+
+  <section class="band closing">
+    <div class="wrap">
+      <h2>No child with special needs should be left out.</h2>
+      <p>Whether you're in Nairobi or New York, your support reaches a real child and family in rural Kenya.</p>
+      <div class="cta"><a class="btn give" href="#give">Donate now</a><a class="btn line" href="#contact">Partner with us</a></div>
+      <form class="news" id="news" novalidate>
+        <input id="n-email" type="email" placeholder="Your email for updates" aria-label="Email for updates" autocomplete="email">
+        <button class="btn line" type="submit">Get updates</button>
+        <span class="msg" id="n-msg" hidden></span>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <a class="logo" href="#top"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M4 20 20 6l16 14" fill="none" stroke="currentColor" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><circle cx="20" cy="24" r="5" fill="var(--window)"/><path d="M11 36v-9M29 36v-9M11 36h18" stroke="currentColor" stroke-width="3" stroke-linecap="round" fill="none"/></svg>Aminia KE</a>
+        <p>Walking with children with special needs and their families in rural Kenya since 2017.</p>
+      </div>
+      <div><h4>Organisation</h4><ul><li><a href="#why">Our approach</a></li><li><a href="#programmes">Programmes</a></li><li><a href="#stories">Stories</a></li><li><a href="#trust">Accountability</a></li><li><a href="#faq">FAQ</a></li></ul></div>
+      <div><h4>Get involved</h4><ul><li><a href="#give">Donate</a></li><li><a href="#contact">Volunteer</a></li><li><a href="#shop">Support na Vazi shop</a></li><li><a href="#contact">Refer a child</a></li></ul></div>
+      <div><h4>Contact</h4><ul><li>aminiake02@gmail.com</li><li><a href="https://wa.me/254791025078" target="_blank" rel="noopener">WhatsApp +254 791 025 078</a></li><li><a href="https://www.instagram.com/aminia_ke" target="_blank" rel="noopener">Instagram</a> · <a href="https://www.facebook.com/wecaremashambani" target="_blank" rel="noopener">Facebook</a></li></ul></div>
+    </div>
+    <div class="fbase"><span>© 2026 Aminia KE · National NGO, Kenya</span><span>Child safeguarding · Data protection</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var state = { freq:'month', cur:'USD', amt:25 };
+  var opts = { USD:[10,25,50,100], KES:[1000,2500,5000,10000] };
+  var sym = { USD:'$', KES:'KES ' };
+  var amtsEl = document.getElementById('amts');
+  var customEl = document.getElementById('g-custom');
+  function fmt(n){ return sym[state.cur] + Number(n).toLocaleString('en-US'); }
+  function press(a,b,on){ a.setAttribute('aria-pressed', on); b.setAttribute('aria-pressed', !on); }
+  function renderAmts(){
+    amtsEl.innerHTML = '';
+    opts[state.cur].forEach(function(v){
+      var b = document.createElement('button');
+      b.type = 'button'; b.textContent = fmt(v);
+      b.setAttribute('aria-pressed', String(v === state.amt && !customEl.value));
+      b.addEventListener('click', function(){ state.amt = v; customEl.value = ''; renderAmts(); renderImpact(); });
+      amtsEl.appendChild(b);
+    });
+    document.getElementById('cur-sym').textContent = state.cur === 'USD' ? '$' : 'KES';
+  }
+  function renderImpact(){
+    var a = customEl.value ? Number(customEl.value.replace(/[^0-9]/g,'')) : state.amt;
+    var when = state.freq === 'month' ? ' every month' : '';
+    document.getElementById('impact-t').textContent = a ? 'Your gift of ' + fmt(a) + when + ' helps a child with special needs get food, care and regular home visits.' : 'Choose an amount to see your gift.';
+    document.getElementById('g-go').textContent = a ? 'Donate ' + fmt(a) + (state.freq === 'month' ? ' monthly' : '') : 'Donate';
+  }
+  var fo = document.getElementById('freq-once'), fm = document.getElementById('freq-month');
+  fo.onclick = function(){ state.freq='once'; press(fo,fm,true); renderImpact(); };
+  fm.onclick = function(){ state.freq='month'; press(fm,fo,true); renderImpact(); };
+  var cu = document.getElementById('cur-usd'), ck = document.getElementById('cur-kes');
+  cu.onclick = function(){ state.cur='USD'; state.amt=25; press(cu,ck,true); customEl.value=''; renderAmts(); renderImpact(); document.getElementById('payout').classList.remove('on'); };
+  ck.onclick = function(){ state.cur='KES'; state.amt=2500; press(ck,cu,true); customEl.value=''; renderAmts(); renderImpact(); document.getElementById('payout').classList.remove('on'); };
+  customEl.addEventListener('input', function(){ renderAmts(); renderImpact(); });
+  document.getElementById('give').addEventListener('submit', function(e){
+    e.preventDefault();
+    var dl = document.getElementById('payout-dl');
+    dl.innerHTML = state.cur === 'KES'
+      ? '<dt>M-Pesa Paybill</dt><dd><span class="todo">add number</span></dd><dt>Account</dt><dd><span class="todo">add account name</span></dd><dt>Questions</dt><dd>WhatsApp +254 791 025 078</dd>'
+      : '<dt>Card / PayPal</dt><dd><span class="todo">add donation link</span></dd><dt>Bank transfer</dt><dd><span class="todo">add bank, SWIFT, account</span></dd>';
+    document.getElementById('payout').classList.add('on');
+  });
+  renderAmts(); renderImpact();
+
+  document.getElementById('contact-form').addEventListener('submit', function(e){
+    e.preventDefault();
+    var note = document.getElementById('f-note');
+    note.textContent = (!document.getElementById('f-name').value.trim() || !document.getElementById('f-reach').value.trim())
+      ? 'Add your name and an email or phone number so we can reply.'
+      : 'Preview only: messages will be delivered once the site is live.';
+    note.hidden = false;
+  });
+  document.getElementById('news').addEventListener('submit', function(e){
+    e.preventDefault();
+    var m = document.getElementById('n-msg');
+    m.textContent = /.+@.+\..+/.test(document.getElementById('n-email').value) ? 'Preview only: sign-ups will work once the site is live.' : 'Enter a valid email address.';
+    m.hidden = false;
+  });
+})();
+</script>
+</body>
+</html>
